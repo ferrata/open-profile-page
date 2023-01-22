@@ -16,7 +16,7 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.center}>
           <div className={styles.description}>
-            <p>Please wait...</p>
+            <p>Coming soon!</p>
           </div>
         </div>
       </main>
