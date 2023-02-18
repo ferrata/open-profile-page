@@ -9,13 +9,13 @@ const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
 
-  type profile = {
-    name: string
+  type Profile = {
+    name?: string
   }
 
-  const [profile, setProfile] = useState<object>({});   //the problem here is that profile does not know what name is???
+  const [profile, setProfile] = useState<Profile>({})   //the problem here is that profile does not know what name is???
 
-   useEffect(()=>{
+  useEffect(()=>{
     axios.get('https://ferrata.builtwithdark.com/open-profile/api/v1/profile/timbobeek')   //gotta make the username part dynamic `${username}`
       .then(res=>{
         console.log('res.data', res.data);
