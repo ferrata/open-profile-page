@@ -9,24 +9,25 @@ const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
 
-  type Profile = {
-    name?: string
-  }
+  // type Profile = {
+  //   name?: string
+  // }
 
-  const [profile, setProfile] = useState<Profile>({})   //the problem here is that profile does not know what name is???
+  const [profile, setProfile] = useState<any>()  
 
   useEffect(()=>{
     axios.get('https://ferrata.builtwithdark.com/open-profile/api/v1/profile/timbobeek')   //gotta make the username part dynamic `${username}`
       .then(res=>{
-        console.log('res.data', res.data);
-        setProfile(res.data)
-        console.log('profile', profile);
+        //console.log('res.data', res.data);
+        setProfile(res.data.gitHub.profile.bio); // this way it shows up but with delay  
+        //setProfile(res.data); // this causes an error
+        //console.log('profile', profile);
       })
       .catch(err =>{
         console.log(err)
       })
     
-   },[]);
+  },[]);
 
   return (
     <>
@@ -39,11 +40,7 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.center}>
           <div className={styles.description}>
-            <p>Coming soon!</p>
-          </div>
-          <div className='profileData'>
-            <ProfileData name={profile.name}/>  
-            {/* not sure what code to put here */}
+            {profile}
           </div>
         </div>
       </main>
