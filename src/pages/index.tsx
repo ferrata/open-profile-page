@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import ProfileData from './profile';
 import axios from 'axios';
 
+
 const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
@@ -13,14 +14,14 @@ export default function Home() {
   //   name?: string
   // }
 
-  const [profile, setProfile] = useState<any>()  
+  const [profile, setProfile] = useState<any>('')  
 
   useEffect(()=>{
     axios.get('https://ferrata.builtwithdark.com/open-profile/api/v1/profile/timbobeek')   //gotta make the username part dynamic `${username}`
       .then(res=>{
         //console.log('res.data', res.data);
-        setProfile(res.data.gitHub.profile.bio); // this way it shows up but with delay  
-        //setProfile(res.data); // this causes an error
+        setProfile(res.data.gitHub.profile); // this way it shows up but with delay  
+        //setProfile(res.data.gitHub.profile); // this causes an error
         //console.log('profile', profile);
       })
       .catch(err =>{
@@ -28,6 +29,8 @@ export default function Home() {
       })
     
   },[]);
+
+  const {name} = profile;
 
   return (
     <>
@@ -40,7 +43,7 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.center}>
           <div className={styles.description}>
-            {profile}
+            {name}
           </div>
         </div>
       </main>
