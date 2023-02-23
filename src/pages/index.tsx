@@ -35,15 +35,24 @@ export default function Home() {
   let a = Object.keys(languages);
   let b = Object.values(languages);
 
-  function convertToObj(a:string[], b:string[]){
-      let obj:{} = {};
-    // Using the foreach method
-      a.forEach((k:string, i:number) => {obj[k] = b[i]})
-      return obj;
-    }
+  // function convertToObj(a:string[], b:string[]){
+  //     let obj:{} = {};
+  //   // Using the foreach method
+  //     a.forEach((k:string, i:number) => {obj[k] = b[i]})
+  //     return obj;
+  //   }
+  
+    // function oneArray(a:string[], b:string[]){
+    //   let arr:string[] = [];
+    //   arr.forEach((k:string, i:number) => [a[k] , b[i]])
+    //   return arr;
+    // }
 
-  let newObj = convertToObj(a,b);
-  console.log(newObj);
+    // let newArr = oneArray(a,b);
+    // console.log(newArr);
+
+  // let newObj = convertToObj(a,b);
+  // console.log(newObj);
 
 
   return (
@@ -61,7 +70,8 @@ export default function Home() {
             Name: {profile?.gitHub ? profile?.gitHub?.profile?.name :  "loading..."}<br/><br/>
             Bio: {profile?.gitHub?.profile?.bio}<br/><br/>
             Profile URL: {profile?.gitHub?.profile?.url}<br/><br/>
-            Languages: <br/><br/>
+            Languages: 
+
             
           </div>
             
