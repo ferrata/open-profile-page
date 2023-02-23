@@ -5,7 +5,7 @@ import Head from "next/head";
 
 ///NOT SURE I NEED THIS COMPONENT!!!!!
 
-const ProfileData = (props: any) => {        //change to specific type later
+const LanguagesData = (props: any) => {        //change to specific type later
     const {name} = props;
 
     console.log(props);
@@ -17,4 +17,4 @@ const ProfileData = (props: any) => {        //change to specific type later
     )
 }
 
-export default ProfileData;
+export default LanguagesData;

@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { Inter } from '@next/font/google';
 import styles from '@/styles/Home.module.css';
 import { useEffect, useState } from 'react';
-import ProfileData from './profile';
+import LanguagesData from './languages';
 import axios from 'axios';
 
 
@@ -15,13 +15,16 @@ export default function Home() {
   // }
 
   const [profile, setProfile] = useState<any>({})
+  const [languages, setLanguages] = useState<string[]>([])
+
 
   useEffect(()=>{
     axios.get('https://ferrata.builtwithdark.com/open-profile/api/v1/profile/timbobeek')   //gotta make the username part dynamic `${username}`
       .then(res=>{
-        console.log('res.data', res.data);
-        setProfile(res.data);  
-        //console.log('profile', profile);
+        setProfile(res.data);
+        setLanguages(res.data.gitHub.languagesUsed);  
+        // setLangUse(Object.values(res.data.gitHub.languagesUsed));
+        
       })
       .catch(err =>{
         console.log(err)
@@ -29,7 +32,19 @@ export default function Home() {
     
   },[]);
 
-  //const {name} = profile;
+  let a = Object.keys(languages);
+  let b = Object.values(languages);
+
+  function convertToObj(a:string[], b:string[]){
+      let obj:{} = {};
+    // Using the foreach method
+      a.forEach((k:string, i:number) => {obj[k] = b[i]})
+      return obj;
+    }
+
+  let newObj = convertToObj(a,b);
+  console.log(newObj);
+
 
   return (
     <>
@@ -42,9 +57,14 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.center}>
           <div className={styles.description}>
-            {profile?.gitHub?.profile?.avatarUrl}<br/>
-            {profile?.gitHub ? profile?.gitHub?.profile?.name :  "loading..."}
+            Profile Picture URL: {profile?.gitHub?.profile?.avatarUrl}<br/><br/>
+            Name: {profile?.gitHub ? profile?.gitHub?.profile?.name :  "loading..."}<br/><br/>
+            Bio: {profile?.gitHub?.profile?.bio}<br/><br/>
+            Profile URL: {profile?.gitHub?.profile?.url}<br/><br/>
+            Languages: <br/><br/>
+            
           </div>
+            
         </div>
       </main>
     </>
