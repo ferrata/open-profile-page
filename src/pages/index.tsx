@@ -16,15 +16,16 @@ export default function Home() {
 
   const [profile, setProfile] = useState<any>({})
   const [languages, setLanguages] = useState<string[]>([])
+  //const [projects, setProjects] = useState<any>({})
 
 
   useEffect(()=>{
-    axios.get('https://ferrata.builtwithdark.com/open-profile/api/v1/profile/timbobeek')   //gotta make the username part dynamic `${username}`
+    axios.get('https://ferrata.builtwithdark.com/open-profile/api/v1/profile/ferrata')   //gotta make the username part dynamic `${username}`
       .then(res=>{
         setProfile(res.data);
         setLanguages(res.data.gitHub.languagesUsed);  
-        // setLangUse(Object.values(res.data.gitHub.languagesUsed));
-        
+        //setProjects(res.data.gitHub.topFiveStarredRepos);
+
       })
       .catch(err =>{
         console.log(err)
@@ -36,6 +37,9 @@ export default function Home() {
   let b = Object.values(languages);
 
   let newArray = a.map((e, i) => e + '(' + b[i] + ') ');
+
+
+
 
   return (
     <>
@@ -53,7 +57,7 @@ export default function Home() {
             Bio: {profile?.gitHub?.profile?.bio}<br/><br/>
             Profile URL: {profile?.gitHub?.profile?.url}<br/><br/>
             Languages: {newArray}<br/><br/>
-
+            Top 5 Starred Repos: {(profile?.gitHub?.topFiveStarredRepos)?.map((obj, i) => ' Project ' + i + ': ' + obj.description )}
           </div>
             
         </div>
