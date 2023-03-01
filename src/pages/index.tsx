@@ -38,9 +38,6 @@ export default function Home() {
 
   let newArray = a.map((e, i) => e + '(' + b[i] + ') ');
 
-
-
-
   return (
     <>
       <Head>
@@ -57,7 +54,7 @@ export default function Home() {
             Bio: {profile?.gitHub?.profile?.bio}<br/><br/>
             Profile URL: {profile?.gitHub?.profile?.url}<br/><br/>
             Languages: {newArray}<br/><br/>
-            Top 5 Starred Repos: {(profile?.gitHub?.topFiveStarredRepos)?.map((obj, i) => ' Project ' + i + ': ' + obj.description )}
+            Top 5 Starred Repos: <br></br><br></br> {(profile?.gitHub?.topFiveStarredRepos)?.map((obj, i) => ' [Project ' + (i+1) + ']:  Description: (' + obj.description + ') Language: (' + obj.language + ') Name: (' + obj.name + ') Stars: (' + obj.stars + ') URL: (' + obj.url + ') ' )}
           </div>
             
         </div>
