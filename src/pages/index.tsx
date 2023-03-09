@@ -2,34 +2,12 @@ import Head from 'next/head';
 import { Inter } from '@next/font/google';
 import styles from '@/styles/Home.module.css';
 import { useEffect, useState } from 'react';
+import {Profile} from '../types/types';
 import axios from 'axios';
 
+//need to refactor code below using types?
+
 const inter = Inter({ subsets: ['latin'] });
-
-type GitHubRepository = {
-  description: string;
-  language: string;
-  name: string;
-  stars: number;
-  url: string;
-}
-
-type GitHubUserProfile = {
-  avatarUrl: string;
-  url: string;
-  bio: string;
-  name: string;
-}
-
-type GitHubProfile = {
-  languagesUsed: Map<string, number>;
-  profile?: GitHubUserProfile;
-  topFiveStarredRepos: GitHubRepository[];
-}
-
-type Profile = {
-  gitHub?: GitHubProfile;
-}
 
 export default function Home() {
 
@@ -62,13 +40,16 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <div className={styles.center}>
-          <div className={styles.description}>
+          <div className={profile?.gitHub ? styles.description1 : styles.description2}>
             Profile Picture URL: {profile?.gitHub?.profile?.avatarUrl}<br/><br/>
-            Name: {profile?.gitHub ? profile?.gitHub?.profile?.name :  "loading..."}<br/><br/>
+            Name: {profile?.gitHub?.profile?.name}<br/><br/>
             Bio: {profile?.gitHub?.profile?.bio}<br/><br/>
             Profile URL: {profile?.gitHub?.profile?.url}<br/><br/>
             Languages: {newArray}<br/><br/>
             Top 5 Starred Repos: <br></br><br></br> {(profile?.gitHub?.topFiveStarredRepos)?.map((obj: any, i:number) => ' [Project ' + (i+1) + ']:  Description: (' + obj.description + ') Language: (' + obj.language + ') Name: (' + obj.name + ') Stars: (' + obj.stars + ') URL: (' + obj.url + ') ' )}
+          </div>
+          <div className={profile?.gitHub ? styles.description2 : styles.description1}>
+            Loading.......
           </div>
         </div>
       </main>
