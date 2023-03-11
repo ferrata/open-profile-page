@@ -19,8 +19,7 @@ type GitHubProfile = {
   topFiveStarredRepos: GitHubRepository[];
 }
 
-type Profile = {
+export type Profile = {
   gitHub?: GitHubProfile;
 }
 
-export type { GitHubRepository, GitHubUserProfile, GitHubProfile, Profile}

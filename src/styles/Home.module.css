@@ -7,7 +7,7 @@
   min-height: 100vh;
 }
 
-.description1 {
+.description {
   display: inherit;
   justify-content: inherit;
   align-items: inherit;
@@ -16,10 +16,6 @@
   width: 100%;
   z-index: 2;
   font-family: var(--font-mono);
-}
-
-.description2 {
-  display: none;
 }
 
 .description a {
